@@ -10,35 +10,39 @@
 
 <body>
 <?php
-$fileJson = "donneeTP2.json";
+// $fileJson = "donneeTP2.json";
 
-if (file_exists($fileJson)) {
-    $content = file_get_contents($fileJson);
-    $tabVide = json_decode($content, true);
+// if (file_exists($fileJson)) {
+//     $content = file_get_contents($fileJson);
+//     $tabVide = json_decode($content, true);
 
-    if (!is_array($tabVide) || isset($tabVide['prenom'])) {
-        $tabVide = [];
-    }
-} else {
-    $tabVide = [];
-}
+//     if (!is_array($tabVide) || isset($tabVide['prenom'])) {
+//         $tabVide = [];
+//     }
+// } else {
+//     $tabVide = [];
+// }
 
-if (isset($_POST['enregis'])) {
+// if (isset($_POST['enregis'])) {
 
-    $tabRempli = [
-        'prenom' => $_POST['prenom'],
-        'nom' => $_POST['nom'],
-        'adresse' => $_POST['adr'],
-        'telephone' => $_POST['tel'],
-    ];
+//     $tabRempli = [
+//         'prenom' => $_POST['prenom'],
+//         'nom' => $_POST['nom'],
+//         'adresse' => $_POST['adr'],
+//         'telephone' => $_POST['tel'],
+//     ];
 
-    $tabVide[] = $tabRempli;
+//     $tabVide[] = $tabRempli;
 
-    file_put_contents(
-        $fileJson,
-        json_encode($tabVide, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
-    );
-}
+//     file_put_contents(
+//         $fileJson,
+//         json_encode($tabVide, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+//     );
+// }
+
+// if(isset($_GET['indice'])){
+//     $indice = $_GET['indice'];
+// }
 ?>
 
 
@@ -84,13 +88,18 @@ if (isset($_POST['enregis'])) {
                                     <th>Nom</th>
                                     <th>Adresse</th>
                                     <th>Téléphone</th>
+                                    <th>action</th>
                                 </tr>
-                                <?php foreach ($tabVide as $cle): ?>
+                                <!-- <?php foreach ($tabVide as $cle): ?> -->
                                     <tr>
-                                        <td><?= $cle['prenom'] ?></td>
-                                        <td><?= $cle['nom'] ?></td>
-                                        <td><?= $cle['adresse'] ?></td>
-                                        <td><?= $cle['telephone'] ?></td>
+                                        <!-- <td><?= $cle['prenom'] ?></td> -->
+                                        <!-- <td><?= $cle['nom'] ?></td> -->
+                                        <!-- <td><?= $cle['adresse'] ?></td> -->
+                                        <!-- <td><?= $cle['telephone'] ?></td> -->
+                                        <td>
+                                            <a href="" class="btn btn-warning">Modifier</a>
+                                            <a href="indice = <?= $cle ?>" class="btn btn-danger">Supprimer</a>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
 
@@ -101,20 +110,6 @@ if (isset($_POST['enregis'])) {
             </div>
         </div>
 
-<?php 
-    // if(isset($_POST['enregis'])){
-
-    //     $tabRempli = [
-    //         'prenom' => $_POST['prenom'],
-    //         'nom' => $_POST['nom'],
-    //         'adresse' => $_POST['adresse'],
-    //         'telephone' => $_POST['telephone'],
-    //     ];
-    //     $tabVide[] = $tabRempli;
-    //     var_dump($tabVide);
-    //     file_put_contents($fileJson, json_encode($tabVide, JSON_PRETTY_PRINT));
-    // }
-?>
 </body>
 
 </html>
